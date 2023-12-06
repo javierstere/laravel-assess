@@ -26,7 +26,7 @@ class FetchProducts extends Command
                 $products = json_decode($response->getBody(), true);
 
                 foreach ($products['products'] as $product) {
-                    Product::updateOrCreate(['id' => $product['id']], [
+                    Product::firstOrCreate([
                         'title' => $product['title'],
                         'description' => $product['description'],
                         'price' => $product['price'],
